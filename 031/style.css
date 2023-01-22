@@ -1,0 +1,75 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+html, body {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: #424242;
+}
+.container {
+  width: 550px;
+  margin: 0 auto;
+}
+h1 {
+  text-align: center;
+  font-weight: normal
+}
+
+
+/* */ 
+header {
+  display: flex;
+  padding-top: 25px;
+}
+.avatar {
+  border: 1px #424242 solid;
+  width: 140px;
+  height: 180px;
+}
+.about {
+  padding-left: 25px;
+}
+.about h5 {
+  font-weight: normal;
+  font-size: 0.90rem;
+  margin-top: 6px;
+}
+.about h5:first-of-type {
+  margin-top: 0;
+}
+.about div {
+  font-weight: bold;
+}
+/* */ 
+.divider {
+  height: 33px;
+  width: 100%;
+}
+section {
+  border: 1px #424242 solid;
+  padding: 15px;
+}
+section h3 {
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: normal;
+}
+/* */ 
+.target {
+  margin: 15px 40px;
+  line-height: 1.45;
+  font-size: 0.9rem;
+}
+/* */ 
+.schedule {
+  
+  margin: 15px 40px;
+  line-height: 1.32;
+  font-size: 0.9rem;
+}
+/* */ 
+/* */ 
+
+
+
