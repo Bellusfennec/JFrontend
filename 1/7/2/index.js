@@ -1,7 +1,5 @@
 const clientName = prompt("Введите имя клиента".trim());
-let clientSpentForAllTime = prompt(
-  "Сколько клиент потратил за все время?".trim()
-);
+let clientSpentForAllTime = prompt("Сколько клиент потратил за все время?".trim());
 let clientSpentToday = prompt("Сколько клиент потратил сегодня?".trim());
 const check = isNaN(clientSpentForAllTime) && isNaN(clientSpentToday);
 
