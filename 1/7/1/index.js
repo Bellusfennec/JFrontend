@@ -1,5 +1,7 @@
+// const javaScriptDescription =
+//   "JavaScript — мультипарадигменный язык программирования. Поддерживает объектно-ориентированный, императивный и функциональный стили. Является реализацией спецификации ECMAScript. JavaScript обычно используется как встраиваемый язык для программного доступа к объектам приложений.";
 const javaScriptDescription =
-  "JavaScript — мультипарадигменный язык программирования. Поддерживает объектно-ориентированный, императивный и функциональный стили. Является реализацией спецификации ECMAScript. JavaScript обычно используется как встраиваемый язык для программного доступа к объектам приложений.";
+  "JavaS";
 
 const halfJavaScriptDescription = javaScriptDescription
   .substring(0, halfText(javaScriptDescription))
@@ -10,9 +12,8 @@ const halfJavaScriptDescription = javaScriptDescription
 
 console.log(
   halfJavaScriptDescription[halfText(halfJavaScriptDescription)],
-  halfJavaScriptDescription
-);
+  halfJavaScriptDescription);
 
 function halfText(text) {
-  return Math.floor(text.length / 2);
+  return Math.floor((text.length - 1) / 2);
 }
