@@ -1,16 +1,15 @@
-const temperatureInCelsius = Number(
-  prompt("Введите температуру в градусах Цельсия")
-);
-console.log(temperatureInCelsius);
-if (temperatureInCelsius === 0) {
-  alert("0 градусов по Цельсию - это температура замерзания воды");
-} else if (temperatureInCelsius > 0) {
-  alert(
-    "Для замерзания воды температура должна быть 0 градусов по Цельсию либо ниже"
-  );
-}
+const getSumOfNumbers = (number, type = "odd") => {
+  if (!number || typeof number !== "number") return NaN;
 
-const temperatureInFahrenheit = (temperatureInCelsius * 9) / 5 + 32;
-alert(
-  `${temperatureInCelsius} градусов по Цельсию - это ${temperatureInFahrenheit} по Фаренгейту.`
-);
+  let sum = 0;
+  for (let i = 0; i <= number; i++) {
+    if (type === "odd" && !(i % 2)) continue;
+    if (type === "even" && i % 2) continue;
+    sum += i;
+  }
+  return sum;
+};
+
+console.log(getSumOfNumbers(10, "odd")); // 25
+console.log(getSumOfNumbers(10, "even")); // 30
+console.log(getSumOfNumbers(10, "")); // 55
