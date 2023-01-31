@@ -2,9 +2,11 @@ const getSumOfNumbers = (number, type = "odd") => {
   if (!number || typeof number !== "number") return NaN;
 
   let sum = 0;
+  const isOdd = type === "odd" && !(i % 2);
+  const isEven = type === "even" && i % 2;
   for (let i = 0; i <= number; i++) {
-    if (type === "odd" && !(i % 2)) continue;
-    if (type === "even" && i % 2) continue;
+    if (isOdd) continue;
+    if (isEven) continue;
     sum += i;
   }
   return sum;
