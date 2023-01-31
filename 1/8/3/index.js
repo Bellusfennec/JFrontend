@@ -5,8 +5,7 @@ const getDivisorsCount = (number) => {
   }
   let sum = 0;
   for (let i = 1; i <= number; i++) {
-    if (i % 2) continue;
-    console.log('sum', i);
+    if (number % i) continue;
     sum++
   }
   return sum;
