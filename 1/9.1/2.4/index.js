@@ -3,4 +3,6 @@ const matrix = [
   [ 4, 5, 6 ],
   [ 7, 8, 9 ],
 ];
-const numbers = [...matrix[0], ...matrix[1], ...matrix[2]]
+
+const numbers = []
+matrix.forEach((row) => numbers.push(...row))
