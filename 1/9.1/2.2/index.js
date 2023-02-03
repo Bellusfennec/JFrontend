@@ -11,14 +11,15 @@ const getMathResult = (expression) => {
     const value = isNumber ? Number(expression[i]) : String(expression[i])
     exp.push(value)
   }
-  switch (exp[1]) {
-    case '>': sum = exp[0] > exp[2]; break;
-    case '<': sum = exp[0] < exp[2]; break;
-    case '=': sum = exp[0] === exp[2]; break;
-    case '+': sum = exp[0] + exp[2]; break;
-    case '-': sum = exp[0] - exp[2]; break;
-    case '*': sum = exp[0] * exp[2]; break;
-    case '/': sum = exp[0] / exp[2]; break;
+  const [num1, op, num2]  = exp;
+  switch (op) {
+    case '>': sum = num1 > num2; break;
+    case '<': sum = num1 < num2; break;
+    case '=': sum = num1 === num2; break;
+    case '+': sum = num1 + num2; break;
+    case '-': sum = num1 - num2; break;
+    case '*': sum = num1 * num2; break;
+    case '/': sum = num1 / num2; break;
     default:
       return 'Ошибка'
   }
