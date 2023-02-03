@@ -6,14 +6,14 @@ alert(
   `Самый результативный матч был под номером ${number}. В нем было забито ${numberOfGoals} гол(ов).`
 );
 
-const repeatGoals = [...goals].filter(
+const repeatGoals = goals.filter(
   (goal, index, self) => goal > 0 && self.indexOf(goal) !== index
 );
-const minimalGoals = repeatGoals.sort().at(0);
-const repeatMinimalGoals = [...goals].filter((goal) => goal === minimalGoals);
+const minimalGoals = Math.min(...repeatGoals);
+const repeatMinimalGoals = goals.filter((goal) => goal === minimalGoals);
 const numbersGames = [];
 goals.map((goal, i) => {
-  if (goal === minimalGoals) numbersGames.push(i + 1);
+  if (goal === minimalGoals) return numbersGames.push(i + 1);
 });
 alert(
   `Самые не результативные матчи были под номерами ${numbersGames}. В каждом из них было забито по ${minimalGoals} мячу(а).`
@@ -30,9 +30,9 @@ isLose
   ? alert(`Были автоматические поражения: да`)
   : alert(`Были автоматические поражения: нет`);
 
-const victoryGames = [...goals].filter((goal) => goal >= 0);
+const victoryGames = goals.filter((goal) => goal >= 0);
 const averageCountGoals = (sumGoals / victoryGames.length).toFixed(1);
 alert(`Среднее количество голов за матч равно ${averageCountGoals}`);
 
 const sortGoals = [...goals].sort();
-alert(sortGoals)
+alert(sortGoals);
