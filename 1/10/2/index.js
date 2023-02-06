@@ -18,10 +18,10 @@ console.log("result", result);
 ]
 */
 
-function giveTalonsInOrder(people, ordersArr) {
+function giveTalonsInOrder(patients, orders) {
   const newArray = [];
-  ordersArr.forEach((order) => {
-    people.forEach((people) =>
+  orders.forEach((order) => {
+    patients.forEach((people) =>
       people.id === order ? newArray.push(people) : ""
     );
   });
