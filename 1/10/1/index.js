@@ -15,9 +15,11 @@ const users = [
     lastActivity: 104,
   },
 ];
-const usersOnlineNames = [];
-users.forEach((user) =>
-  user.status === "online" ? usersOnlineNames.push(user.username) : ""
-);
+
+const usersOnlineNames = users
+  .map((user) => {
+    if (user.status === "online") return user.username;
+  })
+  .filter(Boolean);
 
 alert(`Сейчас в онлайн следующие пользователи: ${usersOnlineNames}`);

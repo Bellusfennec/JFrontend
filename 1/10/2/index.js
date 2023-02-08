@@ -19,11 +19,11 @@ console.log("result", result);
 */
 
 function giveTalonsInOrder(patients, orders) {
-  const newArray = [];
-  orders.forEach((order) => {
-    patients.forEach((people) =>
-      people.id === order ? newArray.push(people) : ""
-    );
+  return patients.sort((a, b) => {
+    const a2 = orders.indexOf(a.id);
+    const b2 = orders.indexOf(b.id);
+    if (a2 > b2) return 1;
+    if (a2 < b2) return -1;
+    return 0;
   });
-  return newArray
-};
+}
