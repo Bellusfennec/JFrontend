@@ -16,9 +16,11 @@ updatedStudent = {
 */
 
 function giveJobToStudent(student, jobName) {
-  const studentWithWork = Object.assign({...student}, { job: jobName });
   alert(
-    `Поздравляем! У студента ${studentWithWork.fullName} появилась новая работа! Теперь он ${studentWithWork.job}.`
+    `Поздравляем! У студента ${student.fullName} появилась новая работа! Теперь он ${jobName}.`
   );
-  return studentWithWork;
+  return {
+    ...student,
+    job: jobName,
+  };
 }
