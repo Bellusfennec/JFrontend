@@ -12,7 +12,7 @@ const groceries = {
   // more items...
 };
 
-function getTotalPriceOfShoppingBag() {
+function getTotalPriceOfShoppingBag(shoppingBagArray) {
   // Your code here...
 }
 
