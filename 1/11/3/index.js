@@ -1,9 +1,12 @@
 const addDays = (date, days) => {
-  return convertMsToDays(nextBirthdayDate) - convertMsToDays(new Date());
+  const msDays = days * 24 * 60 * 60 * 1000;
+  const newDate = new Date(new Date(date).getTime() + msDays);
+  let day = newDate.getDate();
+  let month = newDate.getMonth() + 1;
+  const year = newDate.getFullYear();
+
+  day = day < 10 ? "0" + day : day;
+  month = month < 10 ? "0" + month : month;
+
+  return day + "." + month + "." + year;
 };
-
-function convertMsToDays(ms) {
-  return Math.round(ms / 1000 / 60 / 60 / 24);
-}
-
-getDaysBeforeBirthday(new Date("November 11, 2023"))
