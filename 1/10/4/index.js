@@ -5,6 +5,7 @@ const student = {
 };
 
 const updatedStudent = giveJobToStudent(student, "веб-разработчик");
+console.log(student);
 /*
 updatedStudent = {
     fullName: 'Максим',
@@ -15,7 +16,7 @@ updatedStudent = {
 */
 
 function giveJobToStudent(student, jobName) {
-  const studentWithWork = Object.assign(student, { job: jobName });
+  const studentWithWork = Object.assign({...student}, { job: jobName });
   alert(
     `Поздравляем! У студента ${studentWithWork.fullName} появилась новая работа! Теперь он ${studentWithWork.job}.`
   );
