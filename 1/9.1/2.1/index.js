@@ -11,10 +11,11 @@ const repeatGoals = goals.filter(
 );
 const minimalGoals = Math.min(...repeatGoals);
 const repeatMinimalGoals = goals.filter((goal) => goal === minimalGoals);
-const numbersGames = [];
-goals.map((goal, i) => {
-  if (goal === minimalGoals) return numbersGames.push(i + 1);
-});
+const numbersGames = goals
+  .map((goal, i) => {
+    if (goal === minimalGoals) return i + 1;
+  })
+  .filter(Boolean);
 alert(
   `Самые не результативные матчи были под номерами ${numbersGames}. В каждом из них было забито по ${minimalGoals} мячу(а).`
 );
