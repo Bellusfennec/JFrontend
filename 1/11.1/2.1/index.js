@@ -26,12 +26,12 @@ const peopleWithVisa = [
 ];
 
 function allowVisa(peaple) {
-  return peaple.filter(human => {
-    const dateArray = human.passportExpiration.split(".");
-    const passportExpiration = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
-    const def = passportExpiration.getTime() - new Date().getTime()
-    return human.criminalRecord && def > 0
-  })
+  return peaple.filter((human) => {
+    const [day, month, year] = human.passportExpiration.split(".");
+    const passportExpiration = new Date(year, month - 1, day);
+    const def = passportExpiration.getTime() - new Date().getTime();
+    return human.criminalRecord && def > 0;
+  });
 }
 
 const result = allowVisa(peopleWithVisa);
