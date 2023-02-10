@@ -27,7 +27,10 @@ const peopleWithVisa = [
 
 function allowVisa(peaple) {
   return peaple.filter(human => {
-    return human.criminalRecord
+    const dateArray = human.passportExpiration.split(".");
+    const passportExpiration = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
+    const def = passportExpiration.getTime() - new Date().getTime()
+    return human.criminalRecord && def > 0
   })
 }
 
