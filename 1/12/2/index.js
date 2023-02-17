@@ -16,8 +16,7 @@ const bird = {
 
 function makeDomestic(isDomestic) {
   console.log(`${this.type} по имени ${this.name} говорит ${this.makeSound()}`);
-  this.isDomestic = isDomestic;
-  return this;
+  return {...this, isDomestic}
 }
 
 makeDomestic.bind(dog, true)();
