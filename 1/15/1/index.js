@@ -1,6 +1,9 @@
 const form = document.querySelector('.create-task-block')
+const tasks = document.querySelector('.tasks-list')
 
 form.addEventListener('submit', (event) => {
   event.preventDefault()
-  // console.log(event.target.input.value);
+  const text = event.target[0].value
+  const id = new Date().getTime()
+  tasks.insertAdjacentHTML('beforeend', `<p id='${id}'>${text}</p>`)
 })
