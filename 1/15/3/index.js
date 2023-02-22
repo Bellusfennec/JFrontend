@@ -25,7 +25,7 @@ const tasks = [];
 
 const form = document.querySelector(".create-task-block");
 const tasksList = document.querySelector(".tasks-list");
-let id = null
+let id = null;
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -34,19 +34,19 @@ form.addEventListener("submit", (event) => {
 
   tasksList.insertAdjacentHTML(
     "beforeend",
-    `<p id='${id}'>${text} <button class='delete-task-button' data-task-id='${id}'>Удалить </button></p>`
+    `<p class="task" id='${id}'>${text} <button class='delete-task-button' data-task-id='${id}'>Удалить </button></p>`
   );
   tasks.push({ id, text });
 });
 
 body.addEventListener("click", (event) => {
   event.stopPropagation();
-  
+
   const button = event.target.closest(".delete-task-button");
   const confirm = event.target.closest(".delete-modal__confirm-button");
   if (button) {
     modal.classList.toggle("modal-overlay_hidden");
-    id = Number(button.dataset.taskId)
+    id = Number(button.dataset.taskId);
   }
   if (confirm && id) {
     console.log(id);
@@ -54,9 +54,8 @@ body.addEventListener("click", (event) => {
     if (index !== -1) {
       tasks.splice(index, 1);
       modal.classList.toggle("modal-overlay_hidden");
-      const button = event.target.closest(".delete-task-button");
+      const button = document.querySelectorAll(".delete-task-button");
+      button[index].closest("p").remove()
     }
-    console.log(index);
-    console.log(tasks);
   }
 });
