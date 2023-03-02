@@ -76,17 +76,18 @@ body.addEventListener("click", (event) => {
 body.addEventListener("keydown", (event) => {
   const key = event.key;
   const buttons = document.querySelectorAll("button");
-  const taskItem = document.querySelector(".task");
+  const taskItem = document.querySelectorAll(".task");
 
   if (key === "Tab") {
     body.style.background = body.style.background === "" ? "#24292E" : "";
-    
+
     if (tasks.length) {
-      Array.from(taskItem.children).forEach(
-        (node) => (node.style.color = node.style.color === "" ? "#ffffff" : "")
-      );
+      Array.from(taskItem).forEach((node) => {
+        console.log(node.style.color);
+        node.style.color = node.style.color === "" ? "#ffffff" : "";
+      });
     }
-    
+
     buttons.forEach(
       (button) =>
         (button.style.border =
