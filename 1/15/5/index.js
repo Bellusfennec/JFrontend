@@ -32,7 +32,7 @@ form.prepend(span);
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  const text = event.target[0].value;
+  const text = event.target[0].value.trim();
   const isRepeat = tasks.some((task) => task.text === text);
   const spanClear = document.querySelectorAll(".error-message-block");
   if (!spanClear.length) form.prepend(span);
@@ -46,8 +46,24 @@ form.addEventListener("submit", (event) => {
     const id = new Date().getTime();
     tasksList.insertAdjacentHTML(
       "beforeend",
-      `<p class="task" id='${id}'>${text} <button class='delete-task-button' data-task-id='${id}'>Удалить </button></p>`
+      `<div class="task-item" data-task-id='${id}'>
+      <div class="task-item__main-container">
+          <div class="task-item__main-content">
+              <form class="checkbox-form">
+                  <input class="checkbox-form__checkbox" type="checkbox" id="task-${id}">
+                  <label for="task-${id}"></label>
+              </form>
+              <span class="task-item__text">
+              ${text}
+              </span>
+          </div>
+          <button class="task-item__delete-button default-button delete-button" data-delete-task-id='${id}'>
+              Удалить
+          </button>
+      </div>
+  </div>`
     );
+    event.target[0].value = "";
     tasks.push({ id, text });
   }
 });
@@ -55,35 +71,40 @@ form.addEventListener("submit", (event) => {
 body.addEventListener("click", (event) => {
   event.stopPropagation();
 
-  const button = event.target.closest(".delete-task-button");
+  const button = event.target.closest(".task-item__delete-button");
   const confirm = event.target.closest(".delete-modal__confirm-button");
+  const cancel = event.target.closest(".delete-modal__cancel-button");
   if (button) {
     modal.classList.toggle("modal-overlay_hidden");
-    id = Number(button.dataset.taskId);
+    id = Number(button.dataset.deleteTaskId);
+  }
+  if (cancel) {
+    modal.classList.toggle("modal-overlay_hidden");
   }
   if (confirm && id) {
-    console.log(id);
     const index = tasks.findIndex((task) => task.id === id);
     if (index !== -1) {
       tasks.splice(index, 1);
       modal.classList.toggle("modal-overlay_hidden");
-      const button = document.querySelectorAll(".delete-task-button");
-      button[index].closest("p").remove();
+      const button = document.querySelectorAll(".task-item__delete-button");
+      button[index].closest(".task-item").remove();
     }
   }
 });
 
+const setting = {}
+
 body.addEventListener("keydown", (event) => {
   const key = event.key;
   const buttons = document.querySelectorAll("button");
-  const taskItem = document.querySelectorAll(".task");
+  const taskItem = document.querySelectorAll(".task-item");
 
   if (key === "Tab") {
+    event.preventDefault();
     body.style.background = body.style.background === "" ? "#24292E" : "";
 
     if (tasks.length) {
       Array.from(taskItem).forEach((node) => {
-        console.log(node.style.color);
         node.style.color = node.style.color === "" ? "#ffffff" : "";
       });
     }
