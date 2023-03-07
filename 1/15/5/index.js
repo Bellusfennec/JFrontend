@@ -92,7 +92,18 @@ body.addEventListener("click", (event) => {
   }
 });
 
-const setting = {}
+const setting = {
+  light: {
+    body: '',
+    color: '',
+    border: ''
+  },
+  dark: {
+    body: '#24292E',
+    color: '#ffffff',
+    border: '1px solid #ffffff'
+  }
+}
 
 body.addEventListener("keydown", (event) => {
   const key = event.key;
