@@ -93,37 +93,41 @@ body.addEventListener("click", (event) => {
 });
 
 const setting = {
+  theme: "light",
   light: {
-    body: '',
-    color: '',
-    border: ''
+    background: "",
+    color: "",
+    border: "",
   },
   dark: {
-    body: '#24292E',
-    color: '#ffffff',
-    border: '1px solid #ffffff'
-  }
-}
+    background: "#24292E",
+    color: "#ffffff",
+    border: "1px solid #ffffff",
+  },
+};
 
 body.addEventListener("keydown", (event) => {
-  const key = event.key;
+  if (event.key === "Tab") {
+    event.preventDefault();
+    if (setting.theme === "light") {
+      changeTheme("dark");
+      setting.theme = "dark";
+    } else {
+      changeTheme("light");
+      setting.theme = "light";
+    }
+  }
+});
+
+function changeTheme(theme = light) {
   const buttons = document.querySelectorAll("button");
   const taskItem = document.querySelectorAll(".task-item");
 
-  if (key === "Tab") {
-    event.preventDefault();
-    body.style.background = body.style.background === "" ? "#24292E" : "";
-
-    if (tasks.length) {
-      Array.from(taskItem).forEach((node) => {
-        node.style.color = node.style.color === "" ? "#ffffff" : "";
-      });
-    }
-
-    buttons.forEach(
-      (button) =>
-        (button.style.border =
-          button.style.border === "" ? "1px solid #ffffff" : "")
+  body.style.background = setting[theme].background;
+  if (tasks.length) {
+    Array.from(taskItem).forEach(
+      (node) => (node.style.color = setting[theme].color)
     );
   }
-});
+  buttons.forEach((button) => (button.style.border = setting[theme].border));
+}
