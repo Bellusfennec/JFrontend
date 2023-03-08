@@ -1,5 +1,5 @@
 const dataContainer = document.querySelector("#data-container");
-const loading = document.querySelector("#loading");
+
 
 const getFastestLoadedPhoto = (ids) => {
   const photos = ids.map((item) =>
@@ -7,14 +7,13 @@ const getFastestLoadedPhoto = (ids) => {
   );
   Promise.race(photos)
     .then((response) => {
-      loading.hidden = false;
+      loading(true)
       if (!response.ok) {
         throw new Error("Ошибка запроса");
       }
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       dataContainer.insertAdjacentHTML(
         "beforeend",
         `<li class="photo-item">
@@ -26,7 +25,13 @@ const getFastestLoadedPhoto = (ids) => {
       );
     })
     .catch((error) => console.error(error))
-    .finally(() => (loading.hidden = true));
+    .finally(() => loading(false));
 };
 
+function loading(boolean = false) {
+  const loading = document.querySelector("#loading");
+  loading.hidden = !boolean;
+}
+
 getFastestLoadedPhoto([60, 12, 55]);
+
