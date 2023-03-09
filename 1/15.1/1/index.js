@@ -1,15 +1,13 @@
 class CustomSelect {
   #id;
-  #option;
+  #options;
   #currentSelectedOption;
   constructor(id, options) {
     this.#id = id;
-    this.#option = options;
-    this.#currentSelectedOption = null;
+    this.#options = options;
+    this.#currentSelectedOption = {};
   }
   render(container) {
-    console.log(this);
-
     container.insertAdjacentHTML(
       "beforeend",
       `
@@ -27,9 +25,9 @@ class CustomSelect {
       </div>
       `
     );
-    const selectDropdown = document.querySelector(".select-dropdown__list");
-    this.#option.map((item) => {
-      selectDropdown.insertAdjacentHTML(
+    const selectDropdownList = document.querySelector(".select-dropdown__list");
+    this.#options.map((item) => {
+      selectDropdownList.insertAdjacentHTML(
         "beforeend",
         `
         <li class="select-dropdown__list-item" data-value="${item.value}">
@@ -38,15 +36,37 @@ class CustomSelect {
         `
       );
     });
+
+    const selectDropdownButton = document.querySelector(
+      ".select-dropdown__button"
+    );
+    const selectDropdownListItem = [
+      ...document.querySelectorAll(".select-dropdown__list-item"),
+    ];
+    const selectDropdownText = document.querySelector(".select-dropdown__text");
+
+    selectDropdownButton.addEventListener("click", () => {
+      selectDropdownList.classList.toggle("active");
+    });
+
+    selectDropdownList.addEventListener("click", (event) => {
+      const [selected] = this.#options.filter(
+        (option) => option.value === Number(event.target.dataset.value)
+      );
+      this.#currentSelectedOption = selected;
+      selectDropdownText.textContent = this.#currentSelectedOption.text;
+      selectDropdownListItem.map((item) => {
+        if (item.classList.contains("selected")) {
+          item.classList.remove("selected");
+        }
+      });
+      event.target.classList.add("selected");
+    });
+
     console.log("selectedValue()", this.selectedValue);
   }
   get selectedValue() {
-    const item = document.querySelectorAll(".select-dropdown__list-item");
-    // item.addEventListener('click', (event) => {
-    //   console.log(event);
-    // })
-    console.log(item);
-    return "get";
+    return this.#currentSelectedOption;
   }
 }
 
