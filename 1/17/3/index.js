@@ -2,7 +2,7 @@ const dataContainer = document.querySelector(".data-container");
 const dataLoading = document.querySelector("#loader");
 
 const renderAlbums = async () => {
-  loading(true);
+  isLoading(true);
   try {
     const response = await fetch("https://jsonplaceholder.typicode.com/albums");
     if (!response.ok) {
@@ -18,11 +18,11 @@ const renderAlbums = async () => {
       "Произошла ошибка в получении данных об альбомах..."
     );
   } finally {
-    loading(false);
+    isLoading(false);
   }
 };
 
-function loading(boolean = false) {
+function isLoading(boolean = false) {
   const loading = document.querySelector(".loading");
   loading.hidden = !boolean;
 }

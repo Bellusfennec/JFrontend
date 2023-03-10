@@ -46,6 +46,7 @@ class CustomSelect {
     const selectDropdownText = document.querySelector(".select-dropdown__text");
 
     selectDropdownButton.addEventListener("click", () => {
+      
       selectDropdownList.classList.toggle("active");
     });
 
@@ -55,6 +56,7 @@ class CustomSelect {
       );
       this.#currentSelectedOption = selected;
       selectDropdownText.textContent = this.#currentSelectedOption.text;
+      selectDropdownList.classList.toggle("active");
       selectDropdownListItem.map((item) => {
         if (item.classList.contains("selected")) {
           item.classList.remove("selected");
@@ -62,8 +64,12 @@ class CustomSelect {
       });
       event.target.classList.add("selected");
     });
-
-    console.log("selectedValue()", this.selectedValue);
+    window.addEventListener('click', (event) => {
+      const body = document.querySelector('body')
+      if (body === event.target && selectDropdownList.classList.contains("active")) {
+        selectDropdownList.classList.toggle("active");
+      }
+    })
   }
   get selectedValue() {
     return this.#currentSelectedOption;
