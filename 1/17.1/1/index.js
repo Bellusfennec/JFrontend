@@ -41,4 +41,4 @@ const renderPost = async (postId) => {
   }
 };
 
-renderPost(3);
+renderPost(1);
